@@ -1,29 +1,46 @@
-import TechLogo from '../assets/techHub.png';
-import '../styles/about.css'
+import { Box, Container, Typography, Paper, Stack, Link, Button } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
-export default function About() {    
-    return (
-        <>
-            <div className="container-about">
-                <main className='main-about'>
-                    <section>
-                        <h1>About Tech Hub</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus tempora autem sunt nostrum distinctio deleniti.</p>
-                    </section>
-                    <article>
-                        <h3>Our Mission</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, possimus nemo. Iusto iste dicta nihil cum possimus soluta sequi repellat. Quo, minima sint architecto libero in alias, nam debitis, molestiae totam ab unde praesentium? Quibusdam quia labore distinctio delectus nisi nobis hic minus numquam perspiciatis, a dicta dolore sequi ex?</p>
-                    </article>
-                    <article>
-                        <h3>Our Community</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas obcaecati unde in, quos illo soluta iste maiores minus aperiam. Neque reiciendis debitis dolorem eaque? Quaerat nihil harum ad accusantium, quod consectetur. Veniam, autem atque. Exercitationem sint optio, quasi quia delectus natus atque quisquam. Reprehenderit tempore beatae atque rerum velit, minima obcaecati quam, cumque perferendis soluta similique ex neque omnis asperiores!</p>
-                    </article>
-                    <article>
-                        <h3>Our Courses</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim itaque quibusdam porro odit perferendis similique eaque libero atque inventore ea delectus, ipsam nemo reiciendis pariatur totam voluptatum velit amet sequi nulla dicta. Dolorem, non. Molestias culpa quas dolorum architecto beatae.</p>
-                    </article>
-                </main>
-            </div>
-        </>
-    );
-};
+export default function About() {
+  const theme = useTheme();
+  const items = [
+    { title: 'Our Mission', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, incidunt. Repellat vitae debitis obcaecati provident architecto ullam odio, harum tempore, dolorum, nobis corrupti necessitatibus delectus. Fuga pariatur iure ratione voluptas?' },
+    { title: 'Our Community', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, incidunt. Repellat vitae debitis obcaecati provident architecto ullam odio, harum tempore, dolorum, nobis corrupti necessitatibus delectus. Fuga pariatur iure ratione voluptas?' },
+    { title: 'Our Courses', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, incidunt. Repellat vitae debitis obcaecati provident architecto ullam odio, harum tempore, dolorum, nobis corrupti necessitatibus delectus. Fuga pariatur iure ratione voluptas?' },
+  ];
+  return (
+     <Container maxWidth="lg" sx={{backgroundColor:theme.palette.background.container, mt:2, p:2,  }}>
+        <Stack
+          direction="column"
+          spacing={2}
+          sx={{
+            justifyContent: "flex-start",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant='h4'>
+            About Tech Hub
+          </Typography>
+          <Typography variant='h6'>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nobis deleniti minima id distinctio architecto molestiae. Nostrum, odio! Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+          </Typography>
+      </Stack>
+      <Stack direction="column"
+        spacing={2}
+        sx={{
+          justifyContent: "flex-start",
+          alignItems: "center",
+          mt: 2,
+        }}>
+          {items.map((item, index)=>(
+      <Paper sx={{ p: 3, maxWidth: { sm: '90%', md: '80%', lg: '70%' }, borderRadius: 2 }} key={index} >
+          <Typography variant='h4' align='center' >
+            {item.title}
+          </Typography>
+          <p>{item.desc}</p>
+        </Paper>
+          ))}         
+      </Stack>
+    </Container>
+  );
+}

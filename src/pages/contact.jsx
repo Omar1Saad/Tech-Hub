@@ -1,40 +1,62 @@
-import '../styles/contact.css'
-import TechLogo from '../assets/techHub.png';
-
+import { Box, Container, Typography, Link, Grid, Paper, Button, Stack, Card, CardContent, CardMedia, TextField, TextareaAutosize } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 export default function Contact(){
+    const theme = useTheme();
     return(
-        <>
-            <div className="container-contact">
-                <main className="main-contact">
-                    <section>
-                        <h1>Contact Tech Hub</h1>
-                        <p>If you have any questions or need assistance, feel free to reach out to us.</p>
-                    </section>
-                    <form action="">
-                        <label htmlFor="name">Full Name:</label>
-                        <input type="text" id="name" name="name" required/>
-            
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" id="email" name="email" required/>
-            
-                        <label htmlFor="message">Message:</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
-            
-                        <button type="submit">Send Message</button>
-                        <p>We will get back to you as soon as possible.</p>
-                    </form>
-                </main>
-                <footer className="footer-contact">
-                    <p>&copy; 2025 Tech Hub. All rights reserved.</p>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                    </ul>
-                </footer>
-            </div>
-        </>
+    <>
+    <Container maxWidth="lg" sx={{backgroundColor:theme.palette.background.container, mt:2, p:2, borderRadius:2 }}>
+        <Stack
+          direction="column"
+          spacing={2}
+          sx={{
+            justifyContent: "flex-start",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant='h4'>
+            Contact Tech Hub
+          </Typography>
+          <Typography variant='h6'>
+            If you have any questions or need assistance, feel free to reach out to us.
+          </Typography>
+      </Stack>
+      <Box
+      component="form"
+      
+      noValidate
+      autoComplete="off">
+
+        <Paper sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' },
+        maxWidth:{ sm:'80%', md:'50%', lg:'40%'} 
+        ,display: 'flex', flexDirection: 'column', alignItems: 'center' ,
+        m:'20px auto', p:4, borderRadius:2
+        }}>
+          <TextField
+            required
+            id="standard-required"
+            label="Full Name"
+            variant="standard"
+            />
+          <TextField
+            required
+            id="standard-required"
+            label="Email"
+            variant="standard"
+            type='email'
+            />
+          <TextField
+            required
+            id="standard-required"
+            multiline
+            label="minimum 20 characters"
+            variant="outlined"
+            type='email'
+            />
+          <Button type='submit' sx={{background:theme.palette.background.button, m:2, color:'white', width:200}} >Sent</Button>
+        </Paper>
+      </Box>
+    </Container>
+    </>
     );
 };

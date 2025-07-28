@@ -18,7 +18,8 @@ function App() {
           <Route path='/posts' element= {
             <PostProvider>
               <Posts/>
-            </PostProvider>}/>
+            </PostProvider>
+            }/>
           <Route path='/services' element= {<Services/>}/>
           <Route path='/contact' element= {<Contact/>}/>
           <Route path='/learn' element= {<Learn/>}/>

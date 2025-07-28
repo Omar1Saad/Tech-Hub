@@ -1,39 +1,48 @@
-import TechLogo from '../assets/techHub.png';
-import '../styles/services.css'
+import { Box, Container, Typography, Paper, Stack, Link, Button } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 export default function Services() {
+    const theme = useTheme()
+    const items = [
+    { title: 'Technical Training Programs ', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, incidunt. Repellat vitae debitis obcaecati provident architecto ullam odio, harum tempore, dolorum, nobis corrupti necessitatibus delectus. Fuga pariatur iure ratione voluptas?' },
+    { title: 'Startup Support and Incubation', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, incidunt. Repellat vitae debitis obcaecati provident architecto ullam odio, harum tempore, dolorum, nobis corrupti necessitatibus delectus. Fuga pariatur iure ratione voluptas?' },
+    { title: 'Community Events and Meetups', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, incidunt. Repellat vitae debitis obcaecati provident architecto ullam odio, harum tempore, dolorum, nobis corrupti necessitatibus delectus. Fuga pariatur iure ratione voluptas?' },
+    { title: 'Freelance and Career Development Support', desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus in odit nisi? Doloribus expedita quam error ipsum quae animi in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet labore non dolore, tenetur porro pariatur repellendus quibusdam hic facere excepturi.' },
+    { title: 'Access to Workspaces and Resources', desc: 'Lorem ipsum  dit nisi? Doloribus expedita quam error ipsum quae animi in?Lorem vitae debitis obcaecati provident architecto ullam odio, harum tempore, dolorum, dolor sit amet consectetur, adipisicing elit. Amet labore non dolore, t' },
+  ];
     return (
-        <>
-        <div className="container-services">
-            <main className='main-services'>
-                <section>
-                    <h1>Services Tech Hub</h1>
-                    <p>At Tech Hub, we provide a wide range of technology-driven services designed to empower individuals, startups, and the local community. Our services are tailored to help you grow, learn, and succeed in today’s digital world.</p>
-                </section>
-                <ol>
-                    <li>
-                        <h2>Technical Training Programs  </h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam eligendi quae voluptatum quisquam voluptatem at distinctio voluptate ipsa velit harum quasi enim amet, magni voluptas. Deleniti cupiditate quod deserunt sapiente?</p>
-                    </li>
-                    <li>
-                        <h2>Startup Support and Incubation </h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus eum ab voluptas ratione sequi? Dolorem nobis officiis, id minus officia enim maiores praesentium, cum fugit quas itaque molestias exercitationem magni. Repellendus animi, ullam harum cumque alias deserunt? Odit, praesentium voluptates.</p>
-                    </li>
-                    <li>
-                        <h2>Community Events and Meetups  </h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit eligendi laboriosam atque placeat voluptates quos quo deleniti id temporibus! In.</p>
-                    </li>
-                    <li>
-                        <h2>Freelance and Career Development Support</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, aut non blanditiis suscipit alias dolor vero enim minus doloremque ea?</p>
-                    </li>
-                    <li>
-                        <h2>Access to Workspaces and Resources</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima suscipit quisquam laboriosam, voluptates inventore rerum autem earum ratione aspernatur cupiditate!</p>
-                    </li>
-                </ol>
-            </main>
-        </div>
-        </>
+    <Container maxWidth="lg" sx={{backgroundColor:theme.palette.background.container, mt:2, p:2,  }}>
+        <Stack
+          direction="column"
+          spacing={2}
+          sx={{
+            justifyContent: "flex-start",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant='h4'>
+            Services Tech Hub
+          </Typography>
+          <Typography variant='h6'>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nobis deleniti minima id distinctio architecto molestiae. Nostrum, odio! Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+          </Typography>
+      </Stack>
+      <Stack direction="column"
+        spacing={2}
+        sx={{
+          justifyContent: "flex-start",
+          alignItems: "center",
+          mt: 2,
+        }}>
+          {items.map((item, index)=>(
+      <Paper sx={{ p: 3, maxWidth: { sm: '90%', md: '80%', lg: '70%' }, borderRadius: 2 }} key={index} >
+          <Typography variant='h4' align='center' >
+            {item.title}
+          </Typography>
+          <p>{item.desc}</p>
+        </Paper>
+          ))}         
+      </Stack>
+    </Container>
     );
 };

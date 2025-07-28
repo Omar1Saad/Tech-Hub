@@ -1,79 +1,98 @@
-import '../styles/posts.css';
-import { useEffect, useState , useContext} from 'react';
-import  {PostContext}  from '../context/postContext';
+import { useContext, useState } from 'react';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import {
+  Container,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Button,
+  Box,
+  Stack,
+  useTheme,
+  Paper,
+} from '@mui/material';
+import { PostContext } from '../context/postContext';
 
 export default function Posts() {
-    const { data, info, userAction } = useContext(PostContext);
-    const [postInfo, setPostInfo] = useState(info);
-    const [action, setAction] = useState(userAction);
-    function hundle(id, key) {
-        var updateAction = { ...action};
-        var updatePostInfo = { ...postInfo };
+  const theme = useTheme();
+  const { data, info, userAction } = useContext(PostContext);
+  const [postInfo, setPostInfo] = useState(info);
+  const [action, setAction] = useState(userAction);
 
-        if (!action[id][key] && key === 'like') {
-            updateAction[id][key] = true;
+  function hundle(id, key) {
+    const updateAction = { ...action };
+    const updatePostInfo = { ...postInfo };
 
-            if (action[id]['dislike']) {
-                updatePostInfo[id]['dislike'] -= 1000;
-                updateAction[id]['dislike'] = false;
-            }
-            updatePostInfo[id][key] += 1000;
+    if (!action[id][key] && key === 'like') {
+      updateAction[id][key] = true;
 
-        } else if (!action[id][key]) {
-            updateAction[id][key] = true;
+      if (action[id]['dislike']) {
+        updatePostInfo[id]['dislike'] -= 1000;
+        updateAction[id]['dislike'] = false;
+      }
+      updatePostInfo[id][key] += 1000;
+    } else if (!action[id][key]) {
+      updateAction[id][key] = true;
 
-            if (action[id]['like']) {
-                updatePostInfo[id]['like'] -= 1000;
-                updateAction[id]['like'] = false;
-            }
-            updatePostInfo[id][key] += 1000;
-            
-        } else {
-            updateAction[id][key] = false;
-            updatePostInfo[id][key] -= 1000;
-        }
-
-        setAction(updateAction);
-        setPostInfo(updatePostInfo);
+      if (action[id]['like']) {
+        updatePostInfo[id]['like'] -= 1000;
+        updateAction[id]['like'] = false;
+      }
+      updatePostInfo[id][key] += 1000;
+    } else {
+      updateAction[id][key] = false;
+      updatePostInfo[id][key] -= 1000;
     }
 
-    return (
-        <>
-            <div className="container-posts">
-                <h1>Posts</h1>
-                <main className='main-posts'>
-                    {data ? (
-                        data.slice(0, 10).map(post => (
-                        <div key={post.id} className="post">
-                            <h2> Post {post.id}</h2>
-                            <h3>Title: {post.title}</h3>
-                            <p>{post.body}</p>
-                            <div className='div-button-posts'>
-                                <button className='dislike-button' onClick={() => hundle(post.id, 'dislike')}>Des Like {postInfo[post.id].dislike < 1000 ? (
-                                    postInfo[post.id].dislike
-                                ):(
-                                    (postInfo[post.id].dislike/1000) + 'K'
-                                )}
-                                </button>
-                                <button className='like-button' onClick={() => hundle(post.id, 'like')}>Like {postInfo[post.id].like < 1000 ? (
-                                    postInfo[post.id].like
-                                ):(
-                                    (postInfo[post.id].like/1000) + 'K'
-                                )}
-                                </button>
-                            </div>
-                        </div>
-                        ))
-                    ) : (
-                        <p>Loading...</p>
-                    )}
-                </main>
-            </div>
-        </>
-    );
+    setAction(updateAction);
+    setPostInfo(updatePostInfo);
+  }
+
+  function formatNumber(num) {
+    return num < 1000 ? num : `${Math.floor((num / 1000)*100)/100}K`
+  }
+
+  return (
+    <Container maxWidth="md" sx={{backgroundColor:theme.palette.background.container, mt:2, p:2,  }}>
+      <Typography variant="h4" gutterBottom textAlign="center">
+        Posts
+      </Typography>
+      {data?(
+        <Stack spacing={2} sx={{m:5}} >
+          {data.slice(0,10).map((post)=>(
+            <Paper key={post.id} 
+            sx={{p:2}}
+            >
+              <Typography align='center' variant='h5' >Post {post.id}</Typography>
+              <Typography variant='h6' sx={{m:2}} >{post.title}:</Typography>
+              <Typography variant='subtitle2' >{post.body}</Typography>
+              <Box sx={{display:'flex', justifyContent:'flex-end', m:2}}>
+                <Button 
+                variant={action[post.id]?.dislike ? 'contained' : 'outlined'}
+                onClick={() => hundle(post.id, 'dislike')}
+                sx={{m:'0 10px'}}
+                >
+                <span style={{padding:'0 10px'}} >{formatNumber(postInfo[post.id]?.dislike || 0)}</span> <ThumbDownIcon/>  
+                </Button>
+                  <Button
+                  variant={action[post.id]?.like ? 'contained' : 'outlined'}
+                  onClick={() => hundle(post.id, 'like')}
+                  sx={{m:'0 10px'}}
+                  >
+                <span style={{padding:'0 10px'}} >{formatNumber(postInfo[post.id]?.like || 0)}</span>  <ThumbUpIcon/>  
+                </Button>
+              </Box>
+            </Paper>
+          ))}
+        </Stack>
+      ):(
+        
+        <Typography variant='h6' align='center' sx={{m:5}} >
+            Loding Posts...
+        </Typography>
+      )}
+    </Container>
+  );
 }
-
-
-
-
-
