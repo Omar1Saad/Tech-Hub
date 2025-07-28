@@ -32,7 +32,7 @@ export default function Home() {
             Your Gateway To Technology Learned
           </Typography>
           <Link href='#'>
-            <Button sx={{background:theme.palette.background.button}} >Join Tech Hub</Button>
+            <Button sx={{background:theme.palette.background.button, color:'white'}} >Join Tech Hub</Button>
           </Link>
       </Stack>
       <Grid container spacing={2} >
