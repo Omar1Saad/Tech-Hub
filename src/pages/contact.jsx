@@ -30,13 +30,15 @@ export default function Contact(){
         <Paper sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' },
         maxWidth:{ sm:'80%', md:'50%', lg:'40%'} 
         ,display: 'flex', flexDirection: 'column', alignItems: 'center' ,
-        m:'20px auto', p:4, borderRadius:2
+        m:'20px auto', p:4, borderRadius:2,
         }}>
           <TextField
             required
             id="standard-required"
             label="Full Name"
             variant="standard"
+            type='text'
+            fullWidth
             />
           <TextField
             required
@@ -44,6 +46,7 @@ export default function Contact(){
             label="Email"
             variant="standard"
             type='email'
+            fullWidth
             />
           <TextField
             required
@@ -51,7 +54,8 @@ export default function Contact(){
             multiline
             label="minimum 20 characters"
             variant="outlined"
-            type='email'
+            type='text'
+            fullWidth
             />
           <Button type='submit' sx={{background:theme.palette.background.button, m:2, color:'white', width:200}} >Sent</Button>
         </Paper>

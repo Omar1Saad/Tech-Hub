@@ -29,21 +29,21 @@ export default function Posts() {
       updateAction[id][key] = true;
 
       if (action[id]['dislike']) {
-        updatePostInfo[id]['dislike'] -= 1000;
+        updatePostInfo[id]['dislike'] -= 1;
         updateAction[id]['dislike'] = false;
       }
-      updatePostInfo[id][key] += 1000;
+      updatePostInfo[id][key] += 1;
     } else if (!action[id][key]) {
       updateAction[id][key] = true;
 
       if (action[id]['like']) {
-        updatePostInfo[id]['like'] -= 1000;
+        updatePostInfo[id]['like'] -= 1;
         updateAction[id]['like'] = false;
       }
-      updatePostInfo[id][key] += 1000;
+      updatePostInfo[id][key] += 1;
     } else {
       updateAction[id][key] = false;
-      updatePostInfo[id][key] -= 1000;
+      updatePostInfo[id][key] -= 1;
     }
 
     setAction(updateAction);

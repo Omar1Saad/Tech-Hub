@@ -16,8 +16,8 @@ export default function PostProvider({children}){
 
         response.data.forEach(post => {
           info[post.id] = {
-            like: parseInt( Math.random() * 1000),
-            dislike: parseInt( Math.random() * 1000),
+            like: parseInt( Math.random() * 10000),
+            dislike: parseInt( Math.random() * 10000),
           };
           userAction[post.id] = {
             like: false,

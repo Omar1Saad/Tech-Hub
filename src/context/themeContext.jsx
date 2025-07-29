@@ -7,9 +7,14 @@ import { lime } from '@mui/material/colors';
 export const themeContext = createContext()
 
 export default function MyThemeProvider({children}){
-  const [isDark, setIsDark] = useState(true);
-  let dark = {
-    palette: {
+  const [isDark, setIsDark] = useState(localStorage.getItem('theme'));
+  if(!isDark){
+    setIsDark('dark')
+    localStorage.setItem('theme', isDark)
+  }
+  const theme = createTheme({
+    ...(isDark === 'dark' ? {
+     palette: {
       mode:'dark',
       primary:{
         main:'#a9e3e6ff',
@@ -21,10 +26,8 @@ export default function MyThemeProvider({children}){
       main:'#121212',
       },
     },
-  }
-
-  let light = {
-    palette: {
+    } : {
+      palette: {
       mode:'light',
       primary:{
         main:'#005f8bff',
@@ -37,14 +40,18 @@ export default function MyThemeProvider({children}){
       main:'#f1f1f1ff',
       },
     },
+    }),
+  });
+
+  const setTheme = ()=> {
+    setIsDark((prev) => prev === 'dark' ? 'light' : 'dark');
+    localStorage.setItem('theme', isDark === 'dark' ? 'light' : 'dark');
   }
-  const theme = createTheme(isDark ? dark : light);
-  const setTheme = ()=> setIsDark((prev) => !prev)
 
     return(
     <ThemeProvider theme={theme}>
     <CssBaseline />
-        <themeContext.Provider value={{setTheme}} >
+        <themeContext.Provider value={{setTheme, isDark}} >
             {children}
         </themeContext.Provider>
     </ThemeProvider>    

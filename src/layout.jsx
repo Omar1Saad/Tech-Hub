@@ -4,10 +4,8 @@ import {Box, AppBar, Toolbar, Stack, Typography, Button, Menu, MenuItem, Breadcr
 import { useContext, useState } from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
-import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
-import InfoIcon from '@mui/icons-material/Info';
 import MenuIcon from '@mui/icons-material/Menu';
 import TechLogo from './assets/techHub.png';
 
@@ -15,7 +13,7 @@ import TechLogo from './assets/techHub.png';
 
 
 export default function Layout({children}) {
-  const {setTheme}= useContext(themeContext)
+  const {setTheme, isDark}= useContext(themeContext)
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -69,7 +67,7 @@ export default function Layout({children}) {
               Learn
               </Link>
             </Breadcrumbs>
-            <MaterialUISwitch onChange={()=>{setTheme()}} size='small' sx={{ m: 0, w:10 }} defaultChecked />
+            <MaterialUISwitch onChange={()=>{setTheme()}} size='small' sx={{ m: 0, w:10 }} checked={isDark === 'dark'?true:false} />
           </Toolbar>
         </AppBar>
 
@@ -133,7 +131,7 @@ export default function Layout({children}) {
               <LocalLibraryIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Learn
               </Link></MenuItem>
-              <MaterialUISwitch onChange={()=>{setTheme()}} size='small' sx={{ m: 0, w:10 }} defaultChecked />
+              <MaterialUISwitch onChange={()=>{setTheme()}} size='small' sx={{ m: 0, w:10 }} checked={isDark === 'dark'?true:false} />
             </Menu>
             <Box sx={{ height:'50px', minWidth:'100px', overflow:'hidden',mr: 2, display:'flex', alignItems:'center'}} >
               <Box component="img" sx={{  height: 200 }} alt="Tech Hub Logo" src={TechLogo} />
