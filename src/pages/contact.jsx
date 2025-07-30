@@ -3,6 +3,10 @@ import { useTheme } from '@mui/material/styles';
 
 export default function Contact(){
     const theme = useTheme();
+    const handleSubmit = (e) => {
+      e.preventDefault(); // هذا جيد طالما التحقق تم قبل الوصول هنا
+      alert('Form submitted!')
+    };
     return(
     <>
     <Container maxWidth="lg" sx={{backgroundColor:theme.palette.background.container, mt:2, p:2, borderRadius:2 }}>
@@ -23,11 +27,10 @@ export default function Contact(){
       </Stack>
       <Box
       component="form"
-      
-      noValidate
+      onSubmit={handleSubmit}
       autoComplete="off">
 
-        <Paper sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' },
+        <Paper sx={{ '& .MuiTextField-root': { m: 1},
         maxWidth:{ sm:'80%', md:'50%', lg:'40%'} 
         ,display: 'flex', flexDirection: 'column', alignItems: 'center' ,
         m:'20px auto', p:4, borderRadius:2,
