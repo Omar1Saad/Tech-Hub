@@ -2,7 +2,7 @@ import { Children, createContext, useState , useEffect} from "react";
 
 import axios from 'axios'
 
-const url = 'https://jsonplaceholder.typicode.com/posts'
+const url = 'https://picsum.photos/v2/list?page=2&limit=30'
 export const PostContext = createContext();
 
 export default function PostProvider({children}){
