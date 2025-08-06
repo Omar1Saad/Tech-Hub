@@ -38,7 +38,7 @@ export default function Layout({children}) {
               underline="hover"
               sx={{ display: 'flex', alignItems: 'center' }}
               color="inherit"
-              href="/posts"
+              href="/products"
               >
               <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Products
