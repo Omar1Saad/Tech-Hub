@@ -23,7 +23,7 @@ function App() {
               <Route path="/*" element={
                 <ProtectedRoute>
                   <Routes>
-                    <Route path="/products" element={
+                    <Route path="/products" index element={
                       <Products></Products>
                     } />
                   </Routes>
